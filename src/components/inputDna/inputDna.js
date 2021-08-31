@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import TextField from "@material-ui/core/TextField";
 import Grid from "@material-ui/core/Grid";
 import FormControl from "@material-ui/core/FormControl";
+import './inputDna.css';
 
 const InputDna = ({ setMutantDna }) => {
     const [dnaFirstSequence, setdnaFirstSequence] = useState([]);
@@ -59,7 +60,7 @@ const InputDna = ({ setMutantDna }) => {
     }
 
     return (
-        <div>
+        <div className="input-content">
             <Grid container spacing={1} justifyContent="center">
                 <h1>Ingresá la secuencia de ADN</h1>
                 <Grid container spacing={1} justifyContent="center">
@@ -121,7 +122,7 @@ const InputDna = ({ setMutantDna }) => {
                     />
                 </Grid>
 
-                <button onClick={submitHandler}>Analizar</button>
+                <button className="input-button" onClick={submitHandler}>Analizar</button>
             </Grid>
         </div>
     );

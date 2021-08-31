@@ -1,0 +1,21 @@
+.add-new-mutant{
+    display:flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    height: 80vh;
+
+}
+
+.succed-Added{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+}
+
+.succed-Added button{
+    margin-top: 5rem;
+
+}

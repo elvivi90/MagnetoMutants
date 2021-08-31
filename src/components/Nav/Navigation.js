@@ -17,10 +17,10 @@ const Navigation = (props) => {
                     </li>
 
                     <li>
-                        <NavLink to="/Cargar mutantes">Cargar mutantes</NavLink>
+                        <NavLink to="/cargar-mutantes">Cargar mutantes</NavLink>
                     </li>
                     <li>
-                        <NavLink to="/Mis Mutantes">Mis Mutantes ({mutantList.length})</NavLink>
+                        <NavLink to="/mis-mutantes">Mis Mutantes ({mutantList.length})</NavLink>
                     </li>
                 </ul>
             </nav>

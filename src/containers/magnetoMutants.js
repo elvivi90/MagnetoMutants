@@ -27,31 +27,29 @@ const MagnetoMutants = () => {
         }));
     };
 
-    const checkPossibleMutant = () => {
+    const checkPossibleMutant = async () => {
         setDnaResult((currentState) => ({
             ...currentState,
             loading: true,
         }));
-        getMutantAnalysis(dna)
-            .then((response) => {
-                if (response === 200) {
-                    setDnaResult((currentState) => ({
+        try {
+            await getMutantAnalysis(dna)
+            setDnaResult(currentState => ({
                         ...currentState,
                         isValidDna: true,
                         loading: false,
                         message: "mutante encontrado",
                     }));
-                }
-            })
-            .catch((error) => {
+        
+            }
+        catch(error){
                 setDnaResult((currentState) => ({
                     ...currentState,
                     isValidDna: false,
                     loading: false,
                     message: "mutante invalido",
                 }));
-                console.log(error);
-            });
+            };
     };
 
     useEffect(() => {
@@ -72,13 +70,13 @@ const MagnetoMutants = () => {
                     <CircularProgress />
                 ) : dnaResult.isValidDna ? (
                     <div>
-                            <CheckCircleTwoToneIcon
-                                style={{ color: "green", fontSize: 30 }}
-                            />
-                            <h2>Mutante encontrado</h2>
-                            <button onClick={analyzeAgainHandler}>
-                                Volver a analizar
-                            </button>
+                        <CheckCircleTwoToneIcon
+                            style={{ color: "green", fontSize: 30 }}
+                        />
+                        <h2>Mutante encontrado</h2>
+                        <button onClick={analyzeAgainHandler}>
+                            Volver a analizar
+                        </button>
                     </div>
                 ) : (
                     <InputDna setMutantDna={setMutantDna} />

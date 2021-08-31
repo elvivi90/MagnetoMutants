@@ -18,7 +18,7 @@ const MutantsEntry = (props) => {
     };
 
     const addNewMutantAgainHandler = () =>{
-      setNewAddedMutant(false)
+        setNewAddedMutant(false)
     };
 
     return (
@@ -43,7 +43,7 @@ const MutantsEntry = (props) => {
                         />
                         <h2>Mutante Agregado</h2>
                         <button onClick={addNewMutantAgainHandler}>
-                            Volver a analizar
+                            Agregar otro mutante
                         </button>
                     </Grid>
                 </div>

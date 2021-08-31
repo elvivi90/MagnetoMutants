@@ -1,20 +1,25 @@
 import React from 'react';
 import { getMutantAnalysis } from "../Api/mutantValidation";
 import { useEffect, useState } from "react";
+import RenderInputDna from './renderInputDna';
 import InputDna from '../components/inputDna/inputDna';
-import CheckCircleTwoToneIcon from "@material-ui/icons/CheckCircleTwoTone"
 import Grid from "@material-ui/core/Grid";
 import CircularProgress from "@material-ui/core/CircularProgress";
+import './magnetoMutants.css';
 
 const MagnetoMutants = () => {
     const [dnaResult, setDnaResult] = useState({
-        isValidDna: false,
-        loading: true,
+        isValidDna: null,
+        loading: false,
         message: "ingrese mutante",
     });
     const [dna, setDna] = useState();
 
     const setMutantDna = (value) => {
+        setDnaResult((currentState) => ({
+            ...currentState,
+            isValidDna: false,
+        }));
         setDna({ dna: value });
         console.log(dna);
     };
@@ -22,7 +27,7 @@ const MagnetoMutants = () => {
     const analyzeAgainHandler = () =>{
         setDnaResult((currentState) => ({
             ...currentState,
-            isValidDna: false,
+            isValidDna: null,
             message: "mutante invalido",
         }));
     };
@@ -53,7 +58,10 @@ const MagnetoMutants = () => {
     };
 
     useEffect(() => {
-        checkPossibleMutant();
+        if (dnaResult.isValidDna !== null) {
+            console.log("hola");
+            checkPossibleMutant();
+        }
     }, [dna]);
 
 
@@ -67,19 +75,15 @@ const MagnetoMutants = () => {
                 alignItems="center"
             >
                 {dnaResult.loading ? (
-                    <CircularProgress />
-                ) : dnaResult.isValidDna ? (
-                    <div>
-                        <CheckCircleTwoToneIcon
-                            style={{ color: "green", fontSize: 30 }}
-                        />
-                        <h2>Mutante encontrado</h2>
-                        <button onClick={analyzeAgainHandler}>
-                            Volver a analizar
-                        </button>
+                    <div className="loader">
+                        <CircularProgress color="secondary"/>
                     </div>
                 ) : (
-                    <InputDna setMutantDna={setMutantDna} />
+                    <RenderInputDna
+                        validDna={dnaResult.isValidDna}
+                        analyzeagain={analyzeAgainHandler}
+                        setMutant={setMutantDna}
+                    />
                 )}
             </Grid>
         </div>

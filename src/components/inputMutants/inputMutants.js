@@ -3,6 +3,7 @@ import TextField from "@material-ui/core/TextField";
 import Radio from "@material-ui/core/Radio";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import RadioGroup from "@material-ui/core/RadioGroup";
+import './inputMutants.css';
 
 const InputMutants = ({ setNewMutant }) => {
     const [NewMutantInput, setNewMutantInput] = useState({
@@ -21,7 +22,7 @@ const InputMutants = ({ setNewMutant }) => {
     });
 
     const submitHandler = () => {
-    //     if (validName.valid & validSuperPower.valid & !validSuperPower.firstMutant) {
+        if (validName.valid & validSuperPower.valid & !validSuperPower.firstMutant) {
             let Newid = Date.now();
             setNewMutantInput((currentStatus) => ({
                 ...currentStatus,
@@ -29,18 +30,34 @@ const InputMutants = ({ setNewMutant }) => {
             }));
             console.log(NewMutantInput.id);
             setNewMutant(NewMutantInput);
-        // } else {
-        //     checkValidName();
-        //     checkValidSuperPower();npm
-        // }
+        }else {
+            checkValidData();
+        }
         
     };
+
+    const checkValidData = () =>{
+        const vName = isValidsequence(NewMutantInput.name)
+        setValidName((curr) => ({
+            ...curr,
+            valid: vName,
+        }));
+        const vSuperPower = isValidsequence(NewMutantInput.superPower);
+        setValidName((curr) => ({
+            ...curr,
+            valid: vSuperPower,
+        }));
+    }
 
     const nameHandler = (event) => {
         event.persist();
         setNewMutantInput((currentStatus) => ({
             ...currentStatus,
             name: event.target.value,
+        }));
+        setValidSuperPower((currentStatus) => ({
+            ...currentStatus,
+            firstMutant: false,
         }));
         console.log(NewMutantInput);
     };
@@ -50,6 +67,10 @@ const InputMutants = ({ setNewMutant }) => {
         setNewMutantInput((currentStatus) => ({
             ...currentStatus,
             superPower: event.target.value,
+        }));
+        setValidSuperPower((currentStatus) => ({
+            ...currentStatus,
+            firstMutant: false,
         }));
     };
 
@@ -82,50 +103,30 @@ const InputMutants = ({ setNewMutant }) => {
         console.log(validName.validName);
     };
     return (
-        <div>
+        <div className="input_new-mutant">
             <label>Nombre del mutante*</label>
             <br />
-            {validName.valid ? (
-                <TextField
-                    id="name"
-                    variant="outlined"
-                    placeholder="Nombre"
-                    onChange={nameHandler}
-                    onBlur={checkValidName}
-                />
-            ) : (
-                <TextField
-                    id="name"
-                    error
-                    variant="outlined"
-                    placeholder="Nombre"
-                    helperText="El campo nombre es obligatorio"
-                    onChange={nameHandler}
-                    onBlur={checkValidName}
-                />
-            )}
+            <TextField
+                id="name"
+                error={!validName.valid}
+                variant="outlined"
+                placeholder="Nombre"
+                helperText="El campo nombre es obligatorio"
+                onChange={nameHandler}
+                onBlur={checkValidName}
+            />
             <br />
             <label>Superpoder*</label>
             <br />
-            {validSuperPower.valid ? (
                 <TextField
                     id="superPower"
-                    variant="outlined"
-                    placeholder="Super poder"
-                    onChange={superPowerHandler}
-                    onBlur={checkValidSuperPower}
-                />
-            ) : (
-                <TextField
-                    id="superPower"
-                    error
+                    error={!validSuperPower.valid}
                     variant="outlined"
                     placeholder="Super poder"
                     helperText="El campo super poder es obligatorio"
                     onChange={superPowerHandler}
                     onBlur={checkValidSuperPower}
                 />
-            )}
 
             <br />
             <label>Nivel*</label>

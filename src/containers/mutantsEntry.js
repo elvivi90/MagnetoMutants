@@ -5,7 +5,7 @@ import FavoriteItem from "../components/Favorites/FavoriteItem";
 import CheckCircleTwoToneIcon from "@material-ui/icons/CheckCircleTwoTone";
 import Grid from "@material-ui/core/Grid";
 import { MutantsContext } from "../context/mutants-context";
-import "./Products.css";
+import "./mutantsEntry.css"
 
 const MutantsEntry = (props) => {
     const [mutantList, setMutantList] = useContext(MutantsContext);
@@ -22,30 +22,22 @@ const MutantsEntry = (props) => {
     };
 
     return (
-        <div>
+        <div className="">
             {!newMutantAdded ? (
-                <div>
+                <div className="add-new-mutant">
                     <h2>Registrar nuevo mutante</h2>
 
                     <InputMutants setNewMutant={setMutant} />
                 </div>
             ) : (
-                <div>
-                    <Grid
-                        container
-                        spacing={1}
-                        justifyContent="center"
-                        alignContent="center"
-                        alignItems="center"
-                    >
+                <div className="succed-Added">
                         <CheckCircleTwoToneIcon
                             style={{ color: "green", fontSize: 30 }}
                         />
-                        <h2>Mutante Agregado</h2>
+                        <h2 className="">Mutante Agregado</h2>
                         <button onClick={addNewMutantAgainHandler}>
                             Agregar otro mutante
                         </button>
-                    </Grid>
                 </div>
             )}
         </div>

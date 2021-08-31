@@ -1,0 +1,9 @@
+.mutants-list{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.header{
+    display: flex;
+    justify-content: center;
+}

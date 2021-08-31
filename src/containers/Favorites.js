@@ -7,21 +7,30 @@ import './Products.css';
 const Favorites = props => {
   
   const [mutantList, setMutantList] = useContext(MutantsContext);
-  // const mutantList = useContext(MutantsContext).products;
-  let content = <p className="placeholder">Got no favorites yet!</p>;
-  if (mutantList.length > 0) {
-    content = (
+  
+  const removehandler = (mutant) =>{
+        const updatedMutants = mutantList.filter(mut =>(mut.id !== mutant));
+        setMutantList(updatedMutants);
+        console.log({ mutantList });
+  };
+
+  if (mutantList.length === 0){
+    return <p className="placeholder">No hay mutantes aun!</p>;
+  }
+  
+  return(
         <ul className="products-list">
-            {mutantList.map((prod) => (
+            {mutantList.map((mut) => (
                 <FavoriteItem
-                    name={prod.name}
-                    superPower={prod.superPower}
+                    key={mut.id}
+                    id={mut.id}
+                    name={mut.name}
+                    superPower={mut.superPower}
+                    remove={removehandler}
                 />
             ))}
         </ul>
     );
-  }
-  return content;
 };
 
 export default Favorites;

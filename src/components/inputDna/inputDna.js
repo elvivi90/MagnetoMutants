@@ -4,7 +4,7 @@ import Grid from "@material-ui/core/Grid";
 import FormControl from "@material-ui/core/FormControl";
 
 const InputDna = ({ setMutantDna }) => {
-    const [dnaFirstSequence, setdnaFirstSequence] = useState();
+    const [dnaFirstSequence, setdnaFirstSequence] = useState([]);
     const [dnaSecondSequence, setdnaSecondSequence] = useState();
     const [dnaThirdSequence, setdnaThirdSequence] = useState();
     const [dnaForthSequence, setdnaForthSequence] = useState();
@@ -65,6 +65,7 @@ const InputDna = ({ setMutantDna }) => {
                 <Grid container spacing={1} justifyContent="center">
                     {valid ? (
                         <TextField
+                            error={false}
                             id="outlined-basic"
                             variant="outlined"
                             placeholder="ATGCGA"
@@ -74,7 +75,7 @@ const InputDna = ({ setMutantDna }) => {
                         />
                     ) : (
                         <TextField
-                            error
+                            error={false}
                             id="outlined-basic"
                             variant="outlined"
                             placeholder="ATGCGA"
@@ -120,7 +121,7 @@ const InputDna = ({ setMutantDna }) => {
                     />
                 </Grid>
 
-                <button onClick={submitHandler}>submitir</button>
+                <button onClick={submitHandler}>Analizar</button>
             </Grid>
         </div>
     );

@@ -6,6 +6,7 @@ import RadioGroup from "@material-ui/core/RadioGroup";
 
 const InputMutants = ({ setNewMutant }) => {
     const [NewMutantInput, setNewMutantInput] = useState({
+        id: Date.now(),
         name: "",
         superPower: "",
         level: "low",
@@ -21,10 +22,16 @@ const InputMutants = ({ setNewMutant }) => {
 
     const submitHandler = () => {
     //     if (validName.valid & validSuperPower.valid & !validSuperPower.firstMutant) {
+            let Newid = Date.now();
+            setNewMutantInput((currentStatus) => ({
+                ...currentStatus,
+                id: NewMutantInput.id + 1,
+            }));
+            console.log(NewMutantInput.id);
             setNewMutant(NewMutantInput);
         // } else {
         //     checkValidName();
-        //     checkValidSuperPower();
+        //     checkValidSuperPower();npm
         // }
         
     };

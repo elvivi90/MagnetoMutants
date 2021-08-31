@@ -12,8 +12,8 @@ const App = (props) => {
             <Navigation />
             <main>
                 <Route path="/" component={MagnetoMutants} exact />
-                <Route path="/Cargar mutantes" component={MutantsEntry} />
-                <Route path="/Mis Mutantes" component={FavoritesPage} />
+                <Route path="/cargar-mutantes" component={MutantsEntry} />
+                <Route path="/mis-mutantes" component={FavoritesPage} />
             </main>
         </React.Fragment>
     );
